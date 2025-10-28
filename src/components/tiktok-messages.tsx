@@ -28,9 +28,6 @@ function AnimatedItem({
   const newIndex = useDerivedValue(() =>
     withSpring(index, { damping: 80, stiffness: 200 }),
   );
-  const stylez = useAnimatedStyle(() => ({
-    opacity: interpolate(newIndex.value, [0, 1], [1, 1 - 0.8 / MAX_MESSAGES]),
-  }));
 
   return (
     <Animated.View
@@ -46,7 +43,7 @@ function AnimatedItem({
           ],
         })}
     >
-      <Animated.View style={stylez}>{children}</Animated.View>
+      <Animated.View>{children}</Animated.View>
     </Animated.View>
   );
 }
@@ -57,7 +54,7 @@ export function TikTokMessages<T>({ renderItem, ...rest }: Props<T>) {
       <Animated.FlatList
         {...flatListProps}
         inverted
-        contentContainerStyle={{ paddingVertical: 20 }}
+        contentContainerStyle={{ paddingVertical: 80 }}
         itemLayoutAnimation={LinearTransition.springify()
           .damping(80)
           .stiffness(200)}
