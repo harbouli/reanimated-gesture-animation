@@ -10,6 +10,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/navigation';
 
+/**
+ * Props for the AnimationSelectionScreen component
+ */
 type AnimationSelectionScreenProps = {
   navigation: NativeStackNavigationProp<
     RootStackParamList,
@@ -17,13 +20,20 @@ type AnimationSelectionScreenProps = {
   >;
 };
 
+/**
+ * Type definition for individual animation items in the selection menu
+ */
 type AnimationItem = {
-  id: string;
-  title: string;
-  description: string;
-  screen: keyof RootStackParamList;
+  id: string;                         // Unique identifier for the animation
+  title: string;                      // Display title
+  description: string;                // Brief description of the animation
+  screen: keyof RootStackParamList;  // Target screen to navigate to
 };
 
+/**
+ * Available animations in the app
+ * Each item represents a different React Native Reanimated demo
+ */
 const animations: AnimationItem[] = [
   {
     id: '1',
@@ -39,11 +49,24 @@ const animations: AnimationItem[] = [
   },
 ];
 
+/**
+ * AnimationSelectionScreen - Main menu for selecting animation demos
+ * Displays a list of available React Native Reanimated animations
+ * Features:
+ * - Dark/light mode support
+ * - Card-based navigation to different demo screens
+ * - Responsive theming based on system preferences
+ */
 export const AnimationSelectionScreen = ({
   navigation,
 }: AnimationSelectionScreenProps): React.JSX.Element => {
+  // Detect system color scheme
   const isDarkMode = useColorScheme() === 'dark';
 
+  /**
+   * Handles navigation to the selected animation screen
+   * @param screen - The key of the screen to navigate to
+   */
   const handlePress = (screen: keyof RootStackParamList) => {
     navigation.navigate(screen);
   };
@@ -55,6 +78,7 @@ export const AnimationSelectionScreen = ({
         { backgroundColor: isDarkMode ? '#1a1a1a' : '#fff' },
       ]}
     >
+      {/* Main title */}
       <Text
         style={[
           styles.title,
@@ -63,6 +87,8 @@ export const AnimationSelectionScreen = ({
       >
         Select Animation
       </Text>
+
+      {/* Subtitle instruction */}
       <Text
         style={[
           styles.subtitle,
@@ -72,6 +98,7 @@ export const AnimationSelectionScreen = ({
         Choose an animation to view
       </Text>
 
+      {/* List of animation cards */}
       <View style={styles.listContainer}>
         {animations.map((animation) => (
           <TouchableOpacity
@@ -109,35 +136,38 @@ export const AnimationSelectionScreen = ({
   );
 };
 
+/**
+ * Styles for the AnimationSelectionScreen
+ */
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 20,
+    flex: 1,           // Fill entire screen
+    padding: 20,       // Spacing around content
   },
   title: {
     fontSize: 32,
     fontWeight: 'bold',
-    marginBottom: 8,
+    marginBottom: 8,   // Space between title and subtitle
   },
   subtitle: {
     fontSize: 16,
-    marginBottom: 24,
+    marginBottom: 24,  // Space between subtitle and cards
   },
   listContainer: {
-    gap: 16,
+    gap: 16,           // Vertical spacing between cards
   },
   card: {
-    padding: 20,
-    borderRadius: 12,
-    borderWidth: 1,
+    padding: 20,       // Internal padding
+    borderRadius: 12,  // Rounded corners
+    borderWidth: 1,    // Subtle border
   },
   cardTitle: {
     fontSize: 20,
     fontWeight: '600',
-    marginBottom: 8,
+    marginBottom: 8,   // Space between title and description
   },
   cardDescription: {
     fontSize: 14,
-    lineHeight: 20,
+    lineHeight: 20,    // Better text readability
   },
 });
