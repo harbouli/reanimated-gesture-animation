@@ -24,10 +24,10 @@ type AnimationSelectionScreenProps = {
  * Type definition for individual animation items in the selection menu
  */
 type AnimationItem = {
-  id: string;                         // Unique identifier for the animation
-  title: string;                      // Display title
-  description: string;                // Brief description of the animation
-  screen: keyof RootStackParamList;  // Target screen to navigate to
+  id: string; // Unique identifier for the animation
+  title: string; // Display title
+  description: string; // Brief description of the animation
+  screen: keyof RootStackParamList; // Target screen to navigate to
 };
 
 /**
@@ -46,6 +46,18 @@ const animations: AnimationItem[] = [
     title: 'Circular Slider',
     description: 'Interactive circular image carousel',
     screen: 'CircularSlider',
+  },
+  {
+    id: '3',
+    title: 'Gesture Playground',
+    description: 'Pan, pinch, and rotate gestures on animated box',
+    screen: 'GesturePlayground',
+  },
+  {
+    id: '4',
+    title: 'Custom Animation',
+    description: 'Your workspace for custom animations',
+    screen: 'TextAnimation',
   },
 ];
 
@@ -79,28 +91,18 @@ export const AnimationSelectionScreen = ({
       ]}
     >
       {/* Main title */}
-      <Text
-        style={[
-          styles.title,
-          { color: isDarkMode ? '#fff' : '#000' },
-        ]}
-      >
+      <Text style={[styles.title, { color: isDarkMode ? '#fff' : '#000' }]}>
         Select Animation
       </Text>
 
       {/* Subtitle instruction */}
-      <Text
-        style={[
-          styles.subtitle,
-          { color: isDarkMode ? '#aaa' : '#666' },
-        ]}
-      >
+      <Text style={[styles.subtitle, { color: isDarkMode ? '#aaa' : '#666' }]}>
         Choose an animation to view
       </Text>
 
       {/* List of animation cards */}
       <View style={styles.listContainer}>
-        {animations.map((animation) => (
+        {animations.map(animation => (
           <TouchableOpacity
             key={animation.id}
             style={[
@@ -141,33 +143,33 @@ export const AnimationSelectionScreen = ({
  */
 const styles = StyleSheet.create({
   container: {
-    flex: 1,           // Fill entire screen
-    padding: 20,       // Spacing around content
+    flex: 1, // Fill entire screen
+    padding: 20, // Spacing around content
   },
   title: {
     fontSize: 32,
     fontWeight: 'bold',
-    marginBottom: 8,   // Space between title and subtitle
+    marginBottom: 8, // Space between title and subtitle
   },
   subtitle: {
     fontSize: 16,
-    marginBottom: 24,  // Space between subtitle and cards
+    marginBottom: 24, // Space between subtitle and cards
   },
   listContainer: {
-    gap: 16,           // Vertical spacing between cards
+    gap: 16, // Vertical spacing between cards
   },
   card: {
-    padding: 20,       // Internal padding
-    borderRadius: 12,  // Rounded corners
-    borderWidth: 1,    // Subtle border
+    padding: 20, // Internal padding
+    borderRadius: 12, // Rounded corners
+    borderWidth: 1, // Subtle border
   },
   cardTitle: {
     fontSize: 20,
     fontWeight: '600',
-    marginBottom: 8,   // Space between title and description
+    marginBottom: 8, // Space between title and description
   },
   cardDescription: {
     fontSize: 14,
-    lineHeight: 20,    // Better text readability
+    lineHeight: 20, // Better text readability
   },
 });

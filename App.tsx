@@ -15,6 +15,9 @@ import { MessagesScreen } from './src/screens/MessagesScreen';
 import { CircularSliderScreen } from './src/screens/CircularSliderScreen';
 import { AnimationSelectionScreen } from './src/screens/AnimationSelectionScreen';
 import { RootStackParamList } from './src/types/navigation';
+import { LiveCoding } from './src/screens/LiveCoding';
+import { GesturePlayground } from './src/screens/GesturePlayground';
+import { TextAnimation } from './src/screens/text-animated-screen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -35,7 +38,7 @@ function App(): React.JSX.Element {
         />
         <NavigationContainer>
           <Stack.Navigator
-            initialRouteName="AnimationSelection"
+            initialRouteName="TextAnimation"
             screenOptions={{
               headerShown: false,
               contentStyle: {
@@ -43,6 +46,7 @@ function App(): React.JSX.Element {
               },
             }}
           >
+            <Stack.Screen name="LiveCoding" component={LiveCoding} />
             <Stack.Screen
               name="AnimationSelection"
               component={AnimationSelectionScreen}
@@ -56,6 +60,11 @@ function App(): React.JSX.Element {
               name="CircularSlider"
               component={CircularSliderScreen}
             />
+            <Stack.Screen
+              name="GesturePlayground"
+              component={GesturePlayground}
+            />
+            <Stack.Screen name="TextAnimation" component={TextAnimation} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>
