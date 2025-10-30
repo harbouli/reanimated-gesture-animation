@@ -19,13 +19,11 @@ export const TextAnimation = () => {
           setIndex(newIndex);
         }}
         onExistFinish={() => {
-          console.log(index);
-          console.log(mySentences[index]);
           setSentence(mySentences[index]);
         }}
         stagger={100}
       >
-        {sentence}
+        {mySentences[index]}
       </Sentence>
     </View>
   );

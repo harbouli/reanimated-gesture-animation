@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TextProps } from 'react-native';
+import { StyleSheet, TextProps, TextStyle } from 'react-native';
 import { View } from 'react-native';
 import Animated, { FadeOut, SlideInDown } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
@@ -16,13 +16,12 @@ export const Sentence: React.FC<SentenceProps> = ({
   stagger = 16,
   ...rest
 }) => {
-  console.log(children);
   if (typeof children !== 'string') {
     throw new Error('Sentence component  only accepts string!');
   }
   //   const fontSize = rest?.style.
   const words = children.split(' ');
-  const fontSize = rest.style?.fontSize ?? 16;
+  const fontSize = (rest.style as TextStyle)?.fontSize ?? 16;
   return (
     <View style={style.wrodsHolder}>
       {words.map((word, index) => (
@@ -47,7 +46,7 @@ export const Sentence: React.FC<SentenceProps> = ({
             exiting={FadeOut.springify()
               .damping(80)
               .stiffness(200)
-              .delay(index * stagger)
+              //   .delay(index * stagger - 200)
               .withCallback(finished => {
                 if (finished && index === words.length - 1 && onExistFinish) {
                   scheduleOnRN(onExistFinish);

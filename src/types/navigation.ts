@@ -5,4 +5,5 @@ export type RootStackParamList = {
   CircularSlider: undefined;
   GesturePlayground: undefined;
   TextAnimation: undefined;
+  LiquidGlass: undefined;
 };

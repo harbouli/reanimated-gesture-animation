@@ -59,6 +59,12 @@ const animations: AnimationItem[] = [
     description: 'Your workspace for custom animations',
     screen: 'TextAnimation',
   },
+  {
+    id: '5',
+    title: 'Liquid Glass',
+    description: 'Liquid glass effect with React Native Skia',
+    screen: 'LiquidGlass',
+  },
 ];
 
 /**
