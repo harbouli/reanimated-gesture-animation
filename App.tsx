@@ -21,6 +21,7 @@ import { TextAnimation } from './src/screens/text-animated-screen';
 
 import { LiquidShape } from './src/components/liquid-shape';
 import { Shader2 } from './src/shader/shader-2';
+import { Shader1 } from './src/shader/shader-1';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -41,7 +42,7 @@ function App(): React.JSX.Element {
         />
         <NavigationContainer>
           <Stack.Navigator
-            initialRouteName="LiquidGlass"
+            initialRouteName="AnimationSelection"
             screenOptions={{
               headerShown: false,
               contentStyle: {
@@ -68,7 +69,7 @@ function App(): React.JSX.Element {
               component={GesturePlayground}
             />
             <Stack.Screen name="TextAnimation" component={TextAnimation} />
-            <Stack.Screen name="LiquidGlass" component={Shader2} />
+            <Stack.Screen name="LiquidGlass" component={Shader1} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

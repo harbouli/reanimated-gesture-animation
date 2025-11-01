@@ -133,9 +133,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Sizing constants for the carousel
 const { width } = Dimensions.get('screen');
-const _itemSize = width * 0.24;              // Each thumbnail is 24% of screen width
-const _spacingSize = 12;                     // Space between thumbnails
-const _itemTotalSize = _itemSize + _spacingSize;  // Total size including spacing
+const _itemSize = width * 0.24; // Each thumbnail is 24% of screen width
+const _spacingSize = 12; // Space between thumbnails
+const _itemTotalSize = _itemSize + _spacingSize; // Total size including spacing
 
 type Props = {};
 
@@ -170,11 +170,11 @@ export const CircularSlider = (props: Props) => {
     );
 
     // Round to nearest integer for active index
-    const newAcrtiveIndex = Math.round(scrollX.value);
+    const newActiveIndex = Math.round(scrollX.value);
 
     // Update React state on JS thread (scheduleOnRN schedules work on React thread)
-    if (activeIndex !== newAcrtiveIndex) {
-      scheduleOnRN(setActiveIndex, newAcrtiveIndex);
+    if (activeIndex !== newActiveIndex) {
+      scheduleOnRN(setActiveIndex, newActiveIndex);
     }
   });
 
@@ -185,9 +185,9 @@ export const CircularSlider = (props: Props) => {
       {/* Full-screen background image layer */}
       <View style={{ ...StyleSheet.absoluteFill }}>
         <Animated.Image
-          exiting={FadeOut.duration(500)}   // Fade out when changing
-          entering={FadeIn.duration(500)}   // Fade in new image
-          key={`index-${activeIndex}`}      // Key change triggers animation
+          exiting={FadeOut.duration(500)} // Fade out when changing
+          entering={FadeIn.duration(500)} // Fade in new image
+          key={`index-${activeIndex}`} // Key change triggers animation
           source={{ uri: images[activeIndex] }}
           style={{ flex: 1 }}
         />
@@ -198,22 +198,22 @@ export const CircularSlider = (props: Props) => {
         data={images}
         keyExtractor={(_, index) => String(index)}
         contentContainerStyle={{
-          paddingHorizontal: (width - _itemSize) / 2,  // Center first/last items
+          paddingHorizontal: (width - _itemSize) / 2, // Center first/last items
           gap: _spacingSize,
         }}
         horizontal
         style={{
           flexGrow: 0,
-          height: _itemSize * 2,  // Extra height for animated vertical movement
+          height: _itemSize * 2, // Extra height for animated vertical movement
         }}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item, index }) => (
           <CarouselItem item={item} index={index} x={scrollX} />
         )}
         onScroll={onScrolll}
-        scrollEventThrottle={1000 / 60}          // 60fps scroll updates
-        snapToInterval={_itemTotalSize}          // Snap to each item
-        decelerationRate={'fast'}                // Quick snap behavior
+        scrollEventThrottle={1000 / 60} // 60fps scroll updates
+        snapToInterval={_itemTotalSize} // Snap to each item
+        decelerationRate={'fast'} // Quick snap behavior
       />
     </SafeAreaView>
   );
@@ -248,8 +248,8 @@ const CarouselItem = ({
           // - Creates smooth arc as you scroll
           translateY: interpolate(
             x?.value || 0,
-            [index - 1, index, index + 1],      // Input range: prev, current, next
-            [_itemSize / 3, 0, _itemSize / 3],  // Output range: down, center, down
+            [index - 1, index, index + 1], // Input range: prev, current, next
+            [_itemSize / 3, 0, _itemSize / 3], // Output range: down, center, down
           ),
         },
       ],
@@ -262,16 +262,16 @@ const CarouselItem = ({
         {
           width: _itemSize,
           height: _itemSize,
-          borderRadius: _itemSize / 2,  // Make circular
+          borderRadius: _itemSize / 2, // Make circular
         },
-        stylez,  // Apply animated translation
+        stylez, // Apply animated translation
       ]}
     >
       <Image
         style={{
           width: _itemSize,
           height: _itemSize,
-          borderRadius: _itemSize / 2,  // Match container border radius
+          borderRadius: _itemSize / 2, // Match container border radius
         }}
         source={{ uri: item }}
       />
