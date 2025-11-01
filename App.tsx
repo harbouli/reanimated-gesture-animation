@@ -18,6 +18,8 @@ import { RootStackParamList } from './src/types/navigation';
 import { LiveCoding } from './src/screens/LiveCoding';
 import { GesturePlayground } from './src/screens/GesturePlayground';
 import { TextAnimation } from './src/screens/text-animated-screen';
+import { FlatListAnimationScreen } from './src/screens/FlatListAnimationScreen';
+import { CircularProgressBarScreen } from './src/screens/CircularProgressBarScreen';
 
 import { LiquidShape } from './src/components/liquid-shape';
 import { Shader2 } from './src/shader/shader-2';
@@ -42,7 +44,7 @@ function App(): React.JSX.Element {
         />
         <NavigationContainer>
           <Stack.Navigator
-            initialRouteName="AnimationSelection"
+            initialRouteName="CircularProgressBar"
             screenOptions={{
               headerShown: false,
               contentStyle: {
@@ -70,6 +72,14 @@ function App(): React.JSX.Element {
             />
             <Stack.Screen name="TextAnimation" component={TextAnimation} />
             <Stack.Screen name="LiquidGlass" component={Shader1} />
+            <Stack.Screen
+              name="FlatListAnimation"
+              component={FlatListAnimationScreen}
+            />
+            <Stack.Screen
+              name="CircularProgressBar"
+              component={CircularProgressBarScreen}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

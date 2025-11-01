@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   useColorScheme,
+  ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -65,6 +66,24 @@ const animations: AnimationItem[] = [
     description: 'Liquid glass effect with React Native Skia',
     screen: 'LiquidGlass',
   },
+  {
+    id: '6',
+    title: 'FlatList Animation',
+    description: 'Staggered entrance animations for FlatList items',
+    screen: 'FlatListAnimation',
+  },
+  {
+    id: '7',
+    title: 'Circular Progress Bar',
+    description: 'Animated circular progress indicator',
+    screen: 'CircularProgressBar',
+  },
+  {
+    id: '8',
+    title: 'Circular Playground',
+    description: 'Experimental playground for circular animations',
+    screen: 'CircularPlayground',
+  },
 ];
 
 /**
@@ -105,41 +124,42 @@ export const AnimationSelectionScreen = ({
       <Text style={[styles.subtitle, { color: isDarkMode ? '#aaa' : '#666' }]}>
         Choose an animation to view
       </Text>
-
-      {/* List of animation cards */}
-      <View style={styles.listContainer}>
-        {animations.map(animation => (
-          <TouchableOpacity
-            key={animation.id}
-            style={[
-              styles.card,
-              {
-                backgroundColor: isDarkMode ? '#2a2a2a' : '#f5f5f5',
-                borderColor: isDarkMode ? '#3a3a3a' : '#e0e0e0',
-              },
-            ]}
-            onPress={() => handlePress(animation.screen)}
-            activeOpacity={0.7}
-          >
-            <Text
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {/* List of animation cards */}
+        <View style={styles.listContainer}>
+          {animations.map(animation => (
+            <TouchableOpacity
+              key={animation.id}
               style={[
-                styles.cardTitle,
-                { color: isDarkMode ? '#fff' : '#000' },
+                styles.card,
+                {
+                  backgroundColor: isDarkMode ? '#2a2a2a' : '#f5f5f5',
+                  borderColor: isDarkMode ? '#3a3a3a' : '#e0e0e0',
+                },
               ]}
+              onPress={() => handlePress(animation.screen)}
+              activeOpacity={0.7}
             >
-              {animation.title}
-            </Text>
-            <Text
-              style={[
-                styles.cardDescription,
-                { color: isDarkMode ? '#aaa' : '#666' },
-              ]}
-            >
-              {animation.description}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+              <Text
+                style={[
+                  styles.cardTitle,
+                  { color: isDarkMode ? '#fff' : '#000' },
+                ]}
+              >
+                {animation.title}
+              </Text>
+              <Text
+                style={[
+                  styles.cardDescription,
+                  { color: isDarkMode ? '#aaa' : '#666' },
+                ]}
+              >
+                {animation.description}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

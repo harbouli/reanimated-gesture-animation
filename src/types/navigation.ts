@@ -6,4 +6,7 @@ export type RootStackParamList = {
   GesturePlayground: undefined;
   TextAnimation: undefined;
   LiquidGlass: undefined;
+  FlatListAnimation: undefined;
+  CircularProgressBar: undefined;
+  CircularPlayground: undefined;
 };
