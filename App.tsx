@@ -20,9 +20,8 @@ import { GesturePlayground } from './src/screens/GesturePlayground';
 import { TextAnimation } from './src/screens/text-animated-screen';
 import { FlatListAnimationScreen } from './src/screens/FlatListAnimationScreen';
 import { CircularProgressBarScreen } from './src/screens/CircularProgressBarScreen';
+import { CircularPlaygroundScreen } from './src/screens/CircularPlaygroundScreen';
 
-import { LiquidShape } from './src/components/liquid-shape';
-import { Shader2 } from './src/shader/shader-2';
 import { Shader1 } from './src/shader/shader-1';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -44,7 +43,7 @@ function App(): React.JSX.Element {
         />
         <NavigationContainer>
           <Stack.Navigator
-            initialRouteName="CircularProgressBar"
+            initialRouteName="AnimationSelection"
             screenOptions={{
               headerShown: false,
               contentStyle: {
@@ -79,6 +78,10 @@ function App(): React.JSX.Element {
             <Stack.Screen
               name="CircularProgressBar"
               component={CircularProgressBarScreen}
+            />
+            <Stack.Screen
+              name="CircularPlayground"
+              component={CircularPlaygroundScreen}
             />
           </Stack.Navigator>
         </NavigationContainer>

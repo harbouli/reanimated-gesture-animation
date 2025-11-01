@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import LoadAssets from '../components/load-assets';
+import { channels } from '../__mock__/channles';
+import { Channels } from '../components/circular-amimation/channels';
 
 /**
  * CircularPlayground Screen
@@ -9,22 +10,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
  */
 export const CircularPlaygroundScreen = (): React.JSX.Element => {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
-        {/* Add your circular animations and components here */}
-      </View>
-    </SafeAreaView>
+    <LoadAssets assets={channels.map(channel => channel.cover)}>
+      <Channels {...{ channels }} />
+    </LoadAssets>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000', // Black background
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});

@@ -1,6 +1,10 @@
-import { Canvas, Path, Skia, Text, useFont } from '@shopify/react-native-skia';
+import { Canvas, Path, SkFont, Skia, Text } from '@shopify/react-native-skia';
 import { View } from 'react-native';
-import { SharedValue, useDerivedValue } from 'react-native-reanimated';
+import {
+  SharedValue,
+  useDerivedValue,
+  withTiming,
+} from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 
 interface CircularProgressBarProps {
@@ -9,19 +13,19 @@ interface CircularProgressBarProps {
   perstage: number;
   end: SharedValue<number>;
   onProgressChange?: (progress: number) => void;
+  font: SkFont;
 }
 export const CircularProgressBar: React.FC<CircularProgressBarProps> = ({
   radius,
   strock,
   end,
+  font,
   perstage,
   onProgressChange,
 }) => {
-  console.log(perstage);
   const innerRadius = radius - strock / 2;
   const path = Skia.Path.Make().addCircle(radius, radius, innerRadius);
   const psgText = useDerivedValue(() => `${Math.round(perstage)}%`);
-  const font = useFont(require('../fonts/Euclid Circular B Bold.ttf'), 60);
   const calculateAngle = (x: number, y: number) => {
     'worklet';
     const centerX = radius;
@@ -29,7 +33,7 @@ export const CircularProgressBar: React.FC<CircularProgressBarProps> = ({
     const dx = x - centerX;
     const dy = y - centerY;
     let angle = Math.atan2(dy, dx);
-    angle = angle + Math.PI / 2;
+    angle = angle;
 
     if (angle < 0) angle += 2 * Math.PI;
     return angle / (2 * Math.PI);
@@ -38,7 +42,7 @@ export const CircularProgressBar: React.FC<CircularProgressBarProps> = ({
   const panGesture = Gesture.Pan()
     .onBegin(event => {
       const progress = calculateAngle(event.x, event.y);
-      end.value = progress;
+      end.value = withTiming(progress);
       if (onProgressChange) {
         onProgressChange(progress);
       }
@@ -56,6 +60,7 @@ export const CircularProgressBar: React.FC<CircularProgressBarProps> = ({
       const _fontSize = font.measureText(psgText.value);
       return radius - _fontSize.width / 2;
     }
+    return radius;
   }, []);
   const fontSize = font?.measureText('%00');
 
@@ -87,7 +92,7 @@ export const CircularProgressBar: React.FC<CircularProgressBarProps> = ({
             <Text
               y={radius + fontSize?.height / 2}
               text={psgText}
-              x={textX.value}
+              x={textX}
               font={font}
               color={'#fff'}
             />
