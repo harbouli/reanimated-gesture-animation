@@ -174,10 +174,10 @@ export default ({ channels, index, isActive }: CircularSelectionProps) => {
             height: R * 2,
             left: -(R - width / 2),
           }}
-          colors={['#353637', '#161819', '#161819']}
+          colors={['#ffffffff', '#9d9d9dff', '#757575ff']}
         />
         <Animated.View style={[StyleSheet.absoluteFill, animatedRotationStyle]}>
-          {channels.map((_, key) => {
+          {channels.map(({ cover }, key) => {
             return (
               <View
                 key={key}
@@ -197,8 +197,9 @@ export default ({ channels, index, isActive }: CircularSelectionProps) => {
                   name={`${key + 1}`}
                   radius={r}
                   currentIndex={key}
-                  // isActive={isActive}
-                  // index={index}
+                  cover={cover}
+                  length={channels.length}
+                  index={index}
                 />
               </View>
             );
