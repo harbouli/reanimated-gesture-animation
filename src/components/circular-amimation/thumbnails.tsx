@@ -38,6 +38,8 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+    backgroundColor: 'red',
+    flexGrow: 0,
   },
 });
 
@@ -146,9 +148,9 @@ export const Thumbnails = ({ channels, index, isActive }: ThumbnailsProps) => {
   };
 
   return (
-    <GestureDetector gesture={panGesture}>
-      <View style={styles.container}>
-        <SafeAreaView />
+    <View style={styles.container}>
+      <SafeAreaView />
+      <GestureDetector gesture={panGesture}>
         <View style={styles.content}>
           {channels.map((channel, key) => (
             <ThumbnailItem
@@ -158,7 +160,7 @@ export const Thumbnails = ({ channels, index, isActive }: ThumbnailsProps) => {
             />
           ))}
         </View>
-      </View>
-    </GestureDetector>
+      </GestureDetector>
+    </View>
   );
 };

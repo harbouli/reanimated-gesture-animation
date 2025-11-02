@@ -4,7 +4,6 @@ import Animated, {
   SharedValue,
   useAnimatedStyle,
   interpolate,
-  interpolateColor,
   Extrapolation,
   useDerivedValue,
 } from 'react-native-reanimated';
@@ -19,8 +18,6 @@ import {
 } from '@shopify/react-native-skia';
 
 const margin = 10;
-const activeColor = 'rgb(59, 130, 246)'; // Light blue for active
-const nonActiveColor = 'rgb(229, 231, 235)'; // Light gray for inactive
 
 // Identity matrix (colorful - no change)
 const identityMatrix = [
@@ -49,7 +46,6 @@ export default ({
   cover,
   length,
 }: ChannelIconProps) => {
-  // Load the image using Skia's useImage hook
   const image = useImage(cover);
 
   const scale = useDerivedValue(() => {
@@ -124,7 +120,7 @@ export default ({
           }}
         >
           {/* Background circle */}
-          <Circle cx={centerRadius} cy={centerRadius} r={centerRadius} />
+          {/* <Circle cx={centerRadius} cy={centerRadius} r={centerRadius} /> */}
 
           {/* Image rendered with circular clip and color matrix filter */}
           {image && (
