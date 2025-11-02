@@ -33,7 +33,6 @@ interface CircularSelectionProps {
   isActive: SharedValue<number>;
 }
 
-// Spring configuration with enhanced damping
 const springConfig = {
   damping: 25,
   mass: 1.2,
@@ -43,7 +42,6 @@ const springConfig = {
   restDisplacementThreshold: 0.001,
 };
 
-// Modulo function for proper wrapping
 function mod(n: number, m: number) {
   'worklet';
   return ((n % m) + m) % m;
@@ -85,7 +83,7 @@ export default ({ channels, index, isActive }: CircularSelectionProps) => {
       startAngle.value = calculateAngle(event.x, event.y);
       offsetRotation.value = index.value * segment;
     })
-    .onUpdate(event => {
+    .onChange(event => {
       // Calculate current angle from touch position
       const currentAngle = calculateAngle(event.x, event.y);
 

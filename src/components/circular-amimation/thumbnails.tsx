@@ -18,9 +18,9 @@ const { width } = Dimensions.get('window');
 
 // Spring configuration for smooth animations with damping
 const springConfig = {
-  damping: 25,
-  mass: 1.2,
-  stiffness: 120,
+  damping: 18,
+  mass: 1.8,
+  stiffness: 70,
   overshootClamping: false,
   restSpeedThreshold: 0.001,
   restDisplacementThreshold: 0.001,
