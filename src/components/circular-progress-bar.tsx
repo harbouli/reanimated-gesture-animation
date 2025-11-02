@@ -1,4 +1,11 @@
-import { Canvas, Path, SkFont, Skia, Text } from '@shopify/react-native-skia';
+import {
+  Canvas,
+  Path,
+  SkFont,
+  Skia,
+  Text,
+  Shadow,
+} from '@shopify/react-native-skia';
 import { View } from 'react-native';
 import {
   SharedValue,
@@ -68,16 +75,28 @@ export const CircularProgressBar: React.FC<CircularProgressBarProps> = ({
     <GestureDetector gesture={panGesture}>
       <View style={{ width: radius * 2, height: radius * 2 }}>
         <Canvas style={{ flex: 1 }}>
+          {/* Background track with neomorphism - dark inner shadow */}
           <Path
             path={path}
             strokeWidth={strock}
             style={'stroke'}
             strokeJoin={'round'}
             strokeCap={'round'}
-            color={'#333438'}
+            color={'#2a2d32'}
             start={0}
             end={1}
-          />
+          >
+            <Shadow
+              dx={-4}
+              dy={-4}
+              blur={8}
+              color="rgba(60, 65, 75, 0.8)"
+              inner
+            />
+            <Shadow dx={4} dy={4} blur={8} color="rgba(0, 0, 0, 0.9)" inner />
+          </Path>
+
+          {/* Progress bar with drop shadow */}
           <Path
             path={path}
             strokeWidth={strock / 2}
@@ -87,15 +106,22 @@ export const CircularProgressBar: React.FC<CircularProgressBarProps> = ({
             color={'#2a55ffff'}
             start={0}
             end={end}
-          />
+          >
+            <Shadow dx={-4} dy={-4} blur={8} color="rgba(60, 65, 75, 0.8)" />
+            <Shadow dx={4} dy={4} blur={8} color="rgba(0, 0, 0, 0.9)" />
+          </Path>
+
           {font && fontSize && (
             <Text
               y={radius + fontSize?.height / 2}
               text={psgText}
               x={textX}
               font={font}
-              color={'#fff'}
-            />
+              color={'#d2d2d2ff'}
+            >
+              <Shadow dx={-4} dy={-4} blur={8} color="rgba(60, 65, 75, 0.8)" />
+              <Shadow dx={4} dy={4} blur={8} color="rgba(0, 0, 0, 0.9)" />
+            </Text>
           )}
         </Canvas>
       </View>

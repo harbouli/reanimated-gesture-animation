@@ -71,7 +71,7 @@ interface CircularSelectionProps {
  * - Higher stiffness and damping than Thumbnails for snappier circular rotation
  */
 const springConfig = {
-  damping: 25,
+  damping: 13,
   mass: 1.2,
   stiffness: 120,
   overshootClamping: false,
