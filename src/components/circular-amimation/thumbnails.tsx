@@ -4,6 +4,7 @@ import { View, StyleSheet, Dimensions } from 'react-native';
 import Thumbnail from './thumbnail';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Channel } from '../../types/navigation';
+import { SharedValue } from 'react-native-reanimated';
 
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -17,9 +18,10 @@ const styles = StyleSheet.create({
 
 interface ThumbnailsProps {
   channels: Channel[];
+  index: SharedValue<number>;
 }
 
-export default ({ channels }: ThumbnailsProps) => {
+export const Thumbnails = ({ channels }: ThumbnailsProps) => {
   return (
     <View style={styles.container}>
       <SafeAreaView />
@@ -27,10 +29,10 @@ export default ({ channels }: ThumbnailsProps) => {
         {channels.map((channel, key) => {
           return (
             <View
+              key={`channel-${channel.id}-index-${key}`}
               style={{
                 ...StyleSheet.absoluteFill,
               }}
-              {...{ key }}
             >
               <Thumbnail {...{ channel }} />
             </View>
