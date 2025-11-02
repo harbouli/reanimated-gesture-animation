@@ -23,7 +23,7 @@ export const Channels = ({ channels }: ChannelsProps) => {
   const isActive = useSharedValue(0);
   return (
     <View style={styles.container}>
-      <Thumbnails {...{ channels }} index={index} />
+      <Thumbnails {...{ channels, index, isActive }} />
       <CircularSelection isActive={isActive} {...{ channels }} index={index} />
     </View>
   );

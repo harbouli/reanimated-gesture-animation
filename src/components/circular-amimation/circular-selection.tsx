@@ -33,14 +33,14 @@ interface CircularSelectionProps {
   isActive: SharedValue<number>;
 }
 
-// Spring configuration
+// Spring configuration with enhanced damping
 const springConfig = {
-  damping: 20,
-  mass: 1,
-  stiffness: 100,
+  damping: 25,
+  mass: 1.2,
+  stiffness: 120,
   overshootClamping: false,
-  restSpeedThreshold: 0.01,
-  restDisplacementThreshold: 0.01,
+  restSpeedThreshold: 0.001,
+  restDisplacementThreshold: 0.001,
 };
 
 // Modulo function for proper wrapping
@@ -59,7 +59,6 @@ export default ({ channels, index, isActive }: CircularSelectionProps) => {
 
   // Gesture state
   const translationX = useSharedValue(0);
-  const translationY = useSharedValue(0);
   const velocityX = useSharedValue(0);
   const offsetRotation = useSharedValue(0);
   const startAngle = useSharedValue(0);
@@ -114,7 +113,7 @@ export default ({ channels, index, isActive }: CircularSelectionProps) => {
       velocityX.value = event.velocityX;
       translationX.value = event.translationX;
     })
-    .onEnd(event => {
+    .onEnd(() => {
       // Calculate snap point based on velocity
       const currentIndex = index.value;
 
