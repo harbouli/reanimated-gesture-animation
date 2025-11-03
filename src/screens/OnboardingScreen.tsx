@@ -177,7 +177,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#bb5a51',
   },
-  image: { width: width / 2 - __GAP, aspectRatio: 1, borderRadius: __GAP },
+  image: {
+    width: width * 0.55 - __GAP,
+    aspectRatio: 1,
+    borderRadius: __GAP * 0.4,
+  },
   rowContainer: {
     flexDirection: 'row',
     gap: __GAP,
