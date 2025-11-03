@@ -1,4 +1,5 @@
 export type RootStackParamList = {
+  Onboarding: undefined;
   AnimationSelection: undefined;
   Messages: undefined;
   LiveCoding: undefined;

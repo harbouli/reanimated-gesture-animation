@@ -1,0 +1,41 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/fonts/Euclid Circular B Bold Italic.ttf",
+      "sha1": "c68a753df786949f8d15a3dc3ed90f044b5e6d5d"
+    },
+    {
+      "path": "src/fonts/Euclid Circular B Bold.ttf",
+      "sha1": "bd45117653c622ae2f23c567fba9bcb00a7415bc"
+    },
+    {
+      "path": "src/fonts/Euclid Circular B Light Italic.ttf",
+      "sha1": "8a66767e8f063bc58a737d8e90d38895bbe8e6e9"
+    },
+    {
+      "path": "src/fonts/Euclid Circular B Light.ttf",
+      "sha1": "25709e371ee4e43832653cef731fe453b39188c5"
+    },
+    {
+      "path": "src/fonts/Euclid Circular B Medium Italic.ttf",
+      "sha1": "955a46fb1ae73fbd83f4c3340721668e13244d8b"
+    },
+    {
+      "path": "src/fonts/Euclid Circular B Regular.ttf",
+      "sha1": "4e43c088720b0e9055676db98585002e85415306"
+    },
+    {
+      "path": "src/fonts/Euclid Circular B SemiBold Italic.ttf",
+      "sha1": "49b6069d9790e68ad0433622f3e8930bb56c5d14"
+    },
+    {
+      "path": "src/fonts/Euclid Circular B SemiBold.ttf",
+      "sha1": "675682c0e8838cc7cbbb3321060500942e4c92a3"
+    },
+    {
+      "path": "src/fonts/index.ts",
+      "sha1": "65183e10792c4d4ee0ae12ee914dd0a410baf147"
+    }
+  ]
+}

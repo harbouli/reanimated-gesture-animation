@@ -11,6 +11,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { OnboardingScreen } from './src/screens/OnboardingScreen';
 import { MessagesScreen } from './src/screens/MessagesScreen';
 import { CircularSliderScreen } from './src/screens/CircularSliderScreen';
 import { AnimationSelectionScreen } from './src/screens/AnimationSelectionScreen';
@@ -43,7 +44,7 @@ function App(): React.JSX.Element {
         />
         <NavigationContainer>
           <Stack.Navigator
-            initialRouteName="AnimationSelection"
+            initialRouteName="Onboarding"
             screenOptions={{
               headerShown: false,
               contentStyle: {
@@ -51,6 +52,7 @@ function App(): React.JSX.Element {
               },
             }}
           >
+            <Stack.Screen name="Onboarding" component={OnboardingScreen} />
             <Stack.Screen name="LiveCoding" component={LiveCoding} />
             <Stack.Screen
               name="AnimationSelection"
