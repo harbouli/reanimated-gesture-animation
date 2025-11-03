@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Button,
   Dimensions,
   Image,
   Pressable,
@@ -12,7 +11,9 @@ import {
 import { Marquee } from '../components/marquee';
 import LinearGradient from 'react-native-linear-gradient';
 import { FONTS } from '../fonts';
-import Animated, { FadeIn } from 'react-native-reanimated';
+import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
+
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const { width, height } = Dimensions.get('screen');
 const __GAP = 20;
 const columns = [
@@ -59,7 +60,7 @@ export const OnboardingScreen = (): React.JSX.Element => {
     <View
       style={[
         styles.container,
-        { backgroundColor: isDarkMode ? '#1a1a1a' : '#bb5a51' },
+        { backgroundColor: isDarkMode ? '#1a1a1a' : '#fff' },
       ]}
     >
       {/* Top gradient */}
@@ -74,7 +75,7 @@ export const OnboardingScreen = (): React.JSX.Element => {
           height: height * 0.15,
           pointerEvents: 'none',
         }}
-        colors={[isDarkMode ? '#1a1a1a' : '#bb5a51', 'rgba(187, 90, 81, 0)']}
+        colors={[isDarkMode ? '#1a1a1a' : '#fff', 'rgba(255, 255, 255, 0)']}
       />
 
       <View style={styles.rowsHolder}>
@@ -89,23 +90,25 @@ export const OnboardingScreen = (): React.JSX.Element => {
             height: height * 0.15,
             pointerEvents: 'none',
           }}
-          colors={['rgba(187, 90, 81, 0)', isDarkMode ? '#1a1a1a' : '#bb5a51']}
+          colors={['rgba(255, 255, 255, 0)', isDarkMode ? '#1a1a1a' : '#fff']}
         />
         <View style={{ gap: __GAP / 2, transform: [{ rotate: '15deg' }] }}>
           {columns.map((column, index) => (
             <Marquee
-              withGesture={false}
               key={`key-${index}-column-${column.length}`}
               spacing={__GAP}
               reverse={index % 2 == 0}
             >
               <View style={styles.rowContainer}>
                 {column.map((image, key) => (
-                  <Image
+                  <Animated.Image
                     key={`key-${key}-index-${index}-image-${image.slice(
                       0,
                       10,
                     )}}`}
+                    entering={FadeIn.duration(500).delay(
+                      key === column.length - 1 ? 0 : 100 * key,
+                    )}
                     source={{ uri: image }}
                     style={styles.image}
                   />
@@ -125,7 +128,10 @@ export const OnboardingScreen = (): React.JSX.Element => {
           width: width * 0.8,
         }}
       >
-        <Animated.Text entering={FadeIn.duration(900)} style={styles.text}>
+        <Animated.Text
+          entering={FadeIn.duration(900).delay(500)}
+          style={styles.text}
+        >
           Explorez les{' '}
           <Text
             style={{
@@ -148,10 +154,11 @@ export const OnboardingScreen = (): React.JSX.Element => {
           </Text>
         </Animated.Text>
 
-        <Pressable
+        <AnimatedPressable
+          entering={FadeInDown.duration(500)}
           style={{
             paddingHorizontal: __GAP * 3,
-            backgroundColor: '#dedede',
+            backgroundColor: '#0d0d0d',
             paddingVertical: __GAP,
             borderRadius: 99,
           }}
@@ -161,11 +168,12 @@ export const OnboardingScreen = (): React.JSX.Element => {
               fontSize: 22,
               fontFamily: FONTS.EuclidCircularB.SemiBold,
               fontWeight: '600',
+              color: '#fff',
             }}
           >
             Discover more
           </Text>
-        </Pressable>
+        </AnimatedPressable>
       </View>
       {/* <Button title="Test" /> */}
     </View>
@@ -175,7 +183,7 @@ export const OnboardingScreen = (): React.JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#bb5a51',
+    backgroundColor: '#fff',
   },
   image: {
     width: width * 0.55 - __GAP,
@@ -189,12 +197,12 @@ const styles = StyleSheet.create({
   rowsHolder: {
     overflow: 'hidden',
     gap: __GAP / 2,
-    backgroundColor: '#bb5a51',
+    backgroundColor: '#fff',
     // transform: [{ rotate: '15deg' }],
   },
   text: {
     fontFamily: FONTS.EuclidCircularB.Regular,
-    color: '#FFF',
+    color: '#000',
     fontSize: 28,
     textAlign: 'center',
   },
